@@ -7,16 +7,16 @@ if(isset($_POST['submit']))
     $mobile=$_POST['mobile'];
     $email=$_POST['email'];
     $password=$_POST['password'];
-    
+
     $sql="INSERT INTO user(name,mobile,email,password) values ('$name','$mobile','$email','$password');";
     if (mysqli_query($conn, $sql)) {
-      
+
     echo "New record created successfully";
 
     } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 }
-    
+
 }
 
 
@@ -40,8 +40,12 @@ if(isset($_POST['submit']))
       <?php include "navbar.php" ?>
       <div class="container">
       <div class="row">
+        <div class="col-1">
+
+          <?php include "sidebar.php";?>
+          </div>
           <div class="col-6 offset-3">
-          
+
           <h1>Registration</h1>
       <form class="form-group" method="post" action="register.php">
        <label  for="name"> Name:</label>
@@ -54,23 +58,23 @@ if(isset($_POST['submit']))
           <input id="password" type="password" class="form-control" name="password" >
           <br>
           <input type="submit" name="submit" class="btn btn-success">
-      
-      
-      
+
+
+
       </form>
         <br>
        If you are    registered <a href="login.php" class="btn btn-primary">Click Here</a>
-          
-          
+
+
           </div>
-          
-          
-          
+
+
+
           </div>
-      
-      
+
+
       </div>
-    
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

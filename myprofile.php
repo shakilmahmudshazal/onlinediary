@@ -39,17 +39,17 @@ include ("background.php");
 
         </div>
           <div class="col-md-6 offset-md-3">
-              <h1>Your All Entry</h1>
+              <h1>Your information</h1>
                <table class="table">
     <thead>
       <tr>
-        <th>Date</th>
-        <th>Title</th>
-        <th>Note</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
         </tr>
 <?php
 $rid=$_SESSION['id'];
-              $query1 = "SELECT * FROM diary WHERE rid='$rid';" ;
+              $query1 = "SELECT * FROM user WHERE id='$rid';" ;
 
   $result = mysqli_query($conn, $query1);
   //$rows = mysqli_num_rows($result);
@@ -59,17 +59,17 @@ $rid=$_SESSION['id'];
 
       //  $_SESSION['id']=$res['id'];
         echo "<tr>";
-        echo "<td>".$res['date']."</td>";
-        echo "<td>".$res['title']."</td>";
-        echo "<td>".$res['note']."</td>";
-        echo "<td><a class=\"btn btn-success\" href=\"editnote.php?id=$res[id]\">Edit </a></td>";
-        echo "<td><a class=\"btn btn-danger\" href=\"deletenote.php?id=$res[id]\">Delete </a></td>";
+        echo "<td>".$res['name']."</td>";
+        echo "<td>".$res['email']."</td>";
+        echo "<td>".$res['mobile']."</td>";
+        echo "<td><a class=\"btn btn-success\" href=\"editprofile.php?id=$res[id]\">Edit </a></td>";
+        echo "<td><a class=\"btn btn-danger\" href=\"deleteprofile.php?id=$res[id]\">Delete </a></td>";
         }
 
       ?>
     </tbody>
   </table>
-    to enter an entry <a href="user-list.php" class="btn btn-primary">Click Here</a>
+    <!-- to enter an entry <a href="user-list.php" class="btn btn-primary">Click Here</a> -->
 
 
 

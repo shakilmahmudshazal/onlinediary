@@ -5,18 +5,34 @@ check_login_user();
 
 ?>
 
-<?php
-include ("background.php");
-//include("connect.php");
 
-//session_start();
+      <?php
+      // include "connect.php";
+      if(isset($_POST['submit']))
+      {
+         $id=$_GET['id'];
 
-?>
+          $sql="delete from diary where id='$id';";
+          // $sql="update diary set title='$title',note='$note' where id='$id';";
+          if (mysqli_query($conn, $sql)) {
+          //echo "Updated successfully";
+          // echo "<script>alert(\"successfullydone\");</script>";
+            echo '<script language="javascript">';
+           echo 'alert("message successfully sent")';
+           echo '</script>';
 
+               header('Location:allnote.php');
+          } else {
+          echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+      }
+
+      }
+
+
+      ?>
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,62 +44,61 @@ include ("background.php");
     <script type="text/javascript" src="main.js"></script>
   </head>
   <body>
-      <?php include "navbar.php"; ?>
+      <?php include "navbar.php" ?>
 
 
-      <div class="container">
+
+
+
+
+
+
+     <div class="cotainer">
       <div class="row">
-        <div class="col-md-1">
+         <div class="col-1">
 
           <?php include "sidebarprofile.php";?>
 
         </div>
-          <div class="col-md-6 offset-md-3">
-              <h1>Your All Entry</h1>
-               <table class="table">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Title</th>
-        <th>Note</th>
-        </tr>
-<?php
-$rid=$_SESSION['id'];
-              $query1 = "SELECT * FROM diary WHERE rid='$rid';" ;
+        <div class="col-6 offset-3">
 
-  $result = mysqli_query($conn, $query1);
-  //$rows = mysqli_num_rows($result);
-  while ($res=mysqli_fetch_assoc($result) ){
-     # code...
+          <form class="form-group" method="post" action="">
+            <h1>Are you sure ?</h1>
+            <input type="submit" name="submit" value="confirm" class="form-control btn btn-danger">
 
 
-      //  $_SESSION['id']=$res['id'];
-        echo "<tr>";
-        echo "<td>".$res['date']."</td>";
-        echo "<td>".$res['title']."</td>";
-        echo "<td>".$res['note']."</td>";
-        echo "<td><a class=\"btn btn-success\" href=\"editnote.php?id=$res[id]\">Edit </a></td>";
-        echo "<td><a class=\"btn btn-danger\" href=\"deletenote.php?id=$res[id]\">Delete </a></td>";
-        }
-
-      ?>
-    </tbody>
-  </table>
-    to enter an entry <a href="user-list.php" class="btn btn-primary">Click Here</a>
-
-
-
-
-
-
-          </div>
-
-
-          </div>
+          </form>
 
 
 
       </div>
+
+
+
+
+
+     </div>
+
+
+
+
+
+    <br>
+
+
+
+
+
+
+      <a href="allnote.php" class="btn btn-primary">All note</a>
+      <a href="logout.php" class="btn btn-danger">LOG OUT</a>
+
+
+
+      <br>
+      <br>
+      <br>
+      @copyright protected
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
